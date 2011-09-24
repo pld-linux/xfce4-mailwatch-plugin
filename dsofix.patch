@@ -1,0 +1,11 @@
+--- xfce4-mailwatch-plugin-1.1.0.orig/panel-plugin/Makefile.in	2008-09-15 06:06:41.000000000 +0200
++++ xfce4-mailwatch-plugin-1.1.0/panel-plugin/Makefile.in	2010-02-17 14:59:06.000000000 +0100
+@@ -183,7 +183,7 @@
+ INTLTOOL_XML_NOMERGE_RULE = @INTLTOOL_XML_NOMERGE_RULE@
+ INTLTOOL_XML_RULE = @INTLTOOL_XML_RULE@
+ LD = @LD@
+-LDFLAGS = @LDFLAGS@
++LDFLAGS = @LDFLAGS@ -lgcrypt
+ LIBOBJS = @LIBOBJS@
+ LIBS = @LIBS@
+ LIBSM_CFLAGS = @LIBSM_CFLAGS@

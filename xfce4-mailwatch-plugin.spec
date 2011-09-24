@@ -8,6 +8,8 @@ Group:		X11/Applications
 Source0:	http://spuriousinterrupt.org/files/mailwatch/%{name}-%{version}.tar.bz2
 # Source0-md5:	f84dce86be1d7f25f169f262aaacee4e
 Patch0:		%{name}-ui.patch
+Patch1:		dsofix.patch
+Patch2:		mbox-refresh-interval.patch
 URL:		http://spuriousinterrupt.org/projects/xfce4-mailwatch-plugin/
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake
@@ -47,6 +49,8 @@ Obecnie obsługuje następujące protokoły:
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 %{__intltoolize}
