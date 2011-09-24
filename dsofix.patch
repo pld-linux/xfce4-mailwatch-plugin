@@ -9,3 +9,15 @@
  LIBOBJS = @LIBOBJS@
  LIBS = @LIBS@
  LIBSM_CFLAGS = @LIBSM_CFLAGS@
+--- xfce4-mailwatch-plugin-1.1.0/panel-plugin/Makefile.am~	2011-09-24 16:13:16.000000000 +0300
++++ xfce4-mailwatch-plugin-1.1.0/panel-plugin/Makefile.am	2011-09-24 16:14:10.031258292 +0300
+@@ -64,7 +65,8 @@
+ 	@GTHREAD_LIBS@ \
+ 	@LIBXFCE4PANEL_LIBS@ \
+ 	@LIBXFCE4UI_LIBS@ \
+-	@GNUTLS_LIBS@
++	@GNUTLS_LIBS@ \
++	-lgcrypt
+ 
+ if HAVE_CYGWIN
+   xfce4_mailwatch_plugin_LDFLAGS += \
