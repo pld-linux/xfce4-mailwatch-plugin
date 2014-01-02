@@ -1,0 +1,30 @@
+diff -ur xfce4-mailwatch-plugin-1.1.0.orig/libmailwatch-core/mailwatch-net-conn.c xfce4-mailwatch-plugin-1.1.0/libmailwatch-core/mailwatch-net-conn.c
+--- xfce4-mailwatch-plugin-1.1.0.orig/libmailwatch-core/mailwatch-net-conn.c	2014-01-02 14:50:13.736123554 +0100
++++ xfce4-mailwatch-plugin-1.1.0/libmailwatch-core/mailwatch-net-conn.c	2014-01-02 14:57:07.112787229 +0100
+@@ -224,7 +224,7 @@
+         else
+             reason = gnutls_strerror(ret);
+         if(error)
+-            g_set_error(error, XFCE_MAILWATCH_ERROR, code, reason);
++            g_set_error(error, XFCE_MAILWATCH_ERROR, code, "%s", reason);
+         g_critical("XfceMailwatch: TLS handshake failed: %s", reason);
+ 
+         return FALSE;
+@@ -763,7 +763,7 @@
+             break;
+         else if(ret < 0 && EINTR != errno) {
+             g_set_error(error, XFCE_MAILWATCH_ERROR,
+-                        XFCE_MAILWATCH_ERROR_FAILED, strerror(errno));
++                        XFCE_MAILWATCH_ERROR_FAILED, "%s", strerror(errno));
+             return -1;
+         } else if(!block)
+             return 0;
+@@ -779,7 +779,7 @@
+     } else if(TIMER_EXPIRED(RECV_TIMEOUT)) {
+         if(error) {
+             g_set_error(error, XFCE_MAILWATCH_ERROR,
+-                        XFCE_MAILWATCH_ERROR_FAILED, strerror(ETIMEDOUT));
++                        XFCE_MAILWATCH_ERROR_FAILED, "%s", strerror(ETIMEDOUT));
+         }
+         return -1;
+     }
