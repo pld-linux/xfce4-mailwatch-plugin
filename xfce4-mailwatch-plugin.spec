@@ -1,17 +1,13 @@
 Summary:	Multi-protocol, multi-mailbox mail watcher plugin for Xfce4 panel
 Summary(pl.UTF-8):	Wtyczka powiadamiania o poczcie dla panelu Xfce4
 Name:		xfce4-mailwatch-plugin
-Version:	1.1.0
-Release:	11
+Version:	1.2.0
+Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	http://spuriousinterrupt.org/files/mailwatch/%{name}-%{version}.tar.bz2
-# Source0-md5:	f84dce86be1d7f25f169f262aaacee4e
-Patch0:		%{name}-ui.patch
-Patch1:		dsofix.patch
-Patch2:		mbox-refresh-interval.patch
-Patch3:		gnutls-2.12.patch
-Patch4:		format-security.patch
+Source0:	http://archive.xfce.org/src/panel-plugins/xfce4-mailwatch-plugin/1.2/%{name}-%{version}.tar.bz2
+# Source0-md5:	7263114ec0f2987a3aff15afeeb45577
+Patch0:		mbox-refresh-interval.patch
 URL:		http://spuriousinterrupt.org/projects/xfce4-mailwatch-plugin/
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake
@@ -51,10 +47,6 @@ Obecnie obsługuje następujące protokoły:
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
 
 %build
 %{__intltoolize}
@@ -74,8 +66,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-mv $RPM_BUILD_ROOT%{_datadir}/locale/pt{_PT,}
-mv $RPM_BUILD_ROOT%{_datadir}/locale/nb{_NO,}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/xfce4/panel/plugins/libmailwatch.la
 
 %find_lang %{name}
 
@@ -91,8 +82,6 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
-%attr(755,root,root) %{_libdir}/xfce4/panel-plugins/xfce4-mailwatch-plugin
-%{_datadir}/xfce4/panel-plugins/mailwatch.desktop
+%attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libmailwatch.so
+%{_datadir}/xfce4/panel/plugins/mailwatch.desktop
 %{_iconsdir}/hicolor/*/apps/*
-%{_datadir}/xfce4/doc/C/*.html
-%{_datadir}/xfce4/doc/C/images/*.png
