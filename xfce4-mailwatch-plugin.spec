@@ -11,6 +11,7 @@ Patch0:		mbox-refresh-interval.patch
 URL:		http://spuriousinterrupt.org/projects/xfce4-mailwatch-plugin/
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake
+BuildRequires:	exo-devel >= 0.7.2
 BuildRequires:	intltool
 BuildRequires:	gnutls-devel >= 1.2.0
 BuildRequires:	libtool
