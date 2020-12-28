@@ -1,49 +1,49 @@
 Summary:	Multi-protocol, multi-mailbox mail watcher plugin for Xfce4 panel
 Summary(pl.UTF-8):	Wtyczka powiadamiania o poczcie dla panelu Xfce4
 Name:		xfce4-mailwatch-plugin
-Version:	1.2.0
-Release:	6
+Version:	1.3.0
+Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	http://archive.xfce.org/src/panel-plugins/xfce4-mailwatch-plugin/1.2/%{name}-%{version}.tar.bz2
-# Source0-md5:	7263114ec0f2987a3aff15afeeb45577
+Source0:	http://archive.xfce.org/src/panel-plugins/xfce4-mailwatch-plugin/1.3/%{name}-%{version}.tar.bz2
+# Source0-md5:	60911e1370c4d69eababede3195d28eb
 Patch0:		mbox-refresh-interval.patch
 URL:		http://spuriousinterrupt.org/projects/xfce4-mailwatch-plugin/
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake
-BuildRequires:	exo-devel >= 0.7.2
-BuildRequires:	intltool
+BuildRequires:	exo-devel >= 0.11.0
 BuildRequires:	gnutls-devel >= 1.2.0
+BuildRequires:	gtk+3-devel >= 3.22
+BuildRequires:	intltool
 BuildRequires:	libtool
-BuildRequires:	libxfce4ui-devel >= 4.8.0
-BuildRequires:	xfce4-dev-tools >= 4.8.0
-BuildRequires:	xfce4-panel-devel >= 4.8.0
+BuildRequires:	libxfce4ui-devel >= 4.14.0
+BuildRequires:	xfce4-dev-tools >= 4.14.0
+BuildRequires:	xfce4-panel-devel >= 4.14.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires:	xfce4-dirs >= 4.6
-Requires:	xfce4-panel >= 4.4.0
+Requires:	xfce4-panel >= 4.14.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-The Xfce4 Mailwatch Plugin is a multi-protocol, multi-mailbox
-mail watcher.
-Currently, the protocols supported are:
-  * IMAP (SSL/TLS and cleartext, CRAM-MD5)
-  * POP3 (SSL/TLS and cleartext, CRAM-MD5)
-  * Mbox mail spool (local)
-  * Maildir mail spool (local)
-  * MH-Maildir mail spool (local)
-  * Google Mail (GMail) mailbox (remote)
+The Xfce4 Mailwatch Plugin is a multi-protocol, multi-mailbox mail
+watcher. Currently, the protocols supported are:
+  - IMAP (SSL/TLS and cleartext, CRAM-MD5)
+  - POP3 (SSL/TLS and cleartext, CRAM-MD5)
+  - Mbox mail spool (local)
+  - Maildir mail spool (local)
+  - MH-Maildir mail spool (local)
+  - Google Mail (GMail) mailbox (remote)
 
 %description -l pl.UTF-8
 Wtyczka Mailwatch służy do powiadamiania o nadejściu nowej poczty,
 Obecnie obsługuje następujące protokoły:
-  * IMAP (SSL/TLS i czysty tekst, CRAM-MD5)
-  * POP3 (SSL/TLS i czysty tekst, CRAM-MD5)
-  * Mbox (lokalny)
-  * Maildir (lokalny)
-  * MH-Maildir (lokalny)
-  * Google Mail (GMail) (zdalny)
+  - IMAP (SSL/TLS i czysty tekst, CRAM-MD5)
+  - POP3 (SSL/TLS i czysty tekst, CRAM-MD5)
+  - Mbox (lokalny)
+  - Maildir (lokalny)
+  - MH-Maildir (lokalny)
+  - Google Mail (GMail) (zdalny)
 
 %prep
 %setup -q
@@ -68,7 +68,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/xfce4/panel/plugins/libmailwatch.la
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ur_PK
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{ie,ur_PK}
 
 %find_lang %{name}
 
