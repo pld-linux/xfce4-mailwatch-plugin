@@ -1,12 +1,12 @@
 Summary:	Multi-protocol, multi-mailbox mail watcher plugin for Xfce4 panel
 Summary(pl.UTF-8):	Wtyczka powiadamiania o poczcie dla panelu Xfce4
 Name:		xfce4-mailwatch-plugin
-Version:	1.3.0
+Version:	1.3.1
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://archive.xfce.org/src/panel-plugins/xfce4-mailwatch-plugin/1.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	60911e1370c4d69eababede3195d28eb
+# Source0-md5:	28daf174e4f3847d5b04d2241af0a58d
 Patch0:		mbox-refresh-interval.patch
 URL:		http://spuriousinterrupt.org/projects/xfce4-mailwatch-plugin/
 BuildRequires:	autoconf >= 2.63
