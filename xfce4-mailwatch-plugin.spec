@@ -1,28 +1,29 @@
 Summary:	Multi-protocol, multi-mailbox mail watcher plugin for Xfce4 panel
 Summary(pl.UTF-8):	Wtyczka powiadamiania o poczcie dla panelu Xfce4
 Name:		xfce4-mailwatch-plugin
-Version:	1.3.1
+Version:	1.3.2
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	http://archive.xfce.org/src/panel-plugins/xfce4-mailwatch-plugin/1.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	28daf174e4f3847d5b04d2241af0a58d
+Source0:	https://archive.xfce.org/src/panel-plugins/xfce4-mailwatch-plugin/1.3/%{name}-%{version}.tar.bz2
+# Source0-md5:	381ecc1f45b98da42a4429b4a955e779
 Patch0:		mbox-refresh-interval.patch
-URL:		http://spuriousinterrupt.org/projects/xfce4-mailwatch-plugin/
+URL:		https://spuriousinterrupt.org/projects/xfce4-mailwatch-plugin/
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake
 BuildRequires:	exo-devel >= 0.11.0
+BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gnutls-devel >= 1.2.0
-BuildRequires:	gtk+3-devel >= 3.22
-BuildRequires:	intltool
+BuildRequires:	gtk+3-devel >= 3.22.0
 BuildRequires:	libtool
-BuildRequires:	libxfce4ui-devel >= 4.14.0
-BuildRequires:	xfce4-dev-tools >= 4.14.0
-BuildRequires:	xfce4-panel-devel >= 4.14.0
+BuildRequires:	libxfce4ui-devel >= 4.16.0
+BuildRequires:	libxfce4util-devel >= 4.16.0
+BuildRequires:	xfce4-dev-tools >= 4.16.0
+BuildRequires:	xfce4-panel-devel >= 4.16.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires:	xfce4-dirs >= 4.6
-Requires:	xfce4-panel >= 4.14.0
+Requires:	xfce4-panel >= 4.16.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -47,10 +48,9 @@ Obecnie obsługuje następujące protokoły:
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P 0 -p1
 
 %build
-%{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
