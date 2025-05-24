@@ -1,16 +1,14 @@
 Summary:	Multi-protocol, multi-mailbox mail watcher plugin for Xfce4 panel
 Summary(pl.UTF-8):	Wtyczka powiadamiania o poczcie dla panelu Xfce4
 Name:		xfce4-mailwatch-plugin
-Version:	1.3.2
+Version:	1.4.0
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
-Source0:	https://archive.xfce.org/src/panel-plugins/xfce4-mailwatch-plugin/1.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	381ecc1f45b98da42a4429b4a955e779
+Source0:	https://archive.xfce.org/src/panel-plugins/xfce4-mailwatch-plugin/1.4/%{name}-%{version}.tar.xz
+# Source0-md5:	19f852317c31bb99ee41b36c9432d4e0
 Patch0:		mbox-refresh-interval.patch
 URL:		https://spuriousinterrupt.org/projects/xfce4-mailwatch-plugin/
-BuildRequires:	autoconf >= 2.63
-BuildRequires:	automake
 BuildRequires:	exo-devel >= 0.11.0
 BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gnutls-devel >= 1.2.0
@@ -18,6 +16,8 @@ BuildRequires:	gtk+3-devel >= 3.22.0
 BuildRequires:	libtool
 BuildRequires:	libxfce4ui-devel >= 4.16.0
 BuildRequires:	libxfce4util-devel >= 4.16.0
+BuildRequires:	meson >= 0.54.0
+BuildRequires:	ninja
 BuildRequires:	xfce4-dev-tools >= 4.16.0
 BuildRequires:	xfce4-panel-devel >= 4.16.0
 Requires(post,postun):	gtk-update-icon-cache
@@ -51,23 +51,14 @@ Obecnie obsługuje następujące protokoły:
 %patch -P 0 -p1
 
 %build
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure \
-	--disable-static
-
-%{__make}
+%meson
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+%meson_install
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/xfce4/panel/plugins/libmailwatch.la
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{ie,ur_PK}
 
 %find_lang %{name}
@@ -83,7 +74,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README
+%doc AUTHORS NEWS README
 %attr(755,root,root) %{_libdir}/xfce4/panel/plugins/libmailwatch.so
 %{_datadir}/xfce4/panel/plugins/mailwatch.desktop
 %{_iconsdir}/hicolor/*/apps/*
